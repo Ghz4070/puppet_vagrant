@@ -7,7 +7,7 @@ package {
         ensure => present
 }
 file {
-    'download dokuwiki':
+    'download tgz dokuwiki':
         path => '/usr/src/dokuwiki.tgz',
         ensure => present,
         source => 'https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz'
@@ -16,8 +16,8 @@ exec {
     'extract dokuwiki':
         command => 'tar xavf dokuwiki.tgz',
         cwd => '/usr/src',
-        path => ['/usr/bin/tar'],
-        require => File['download dokuwiki']
+        path => ['/usr/bin'],
+        require => File['download tgz dokuwiki']
 }
 file {
     'rename dokuwiki':
