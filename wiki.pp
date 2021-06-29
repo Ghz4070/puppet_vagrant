@@ -8,28 +8,28 @@ package {
 }
 file {
     'download tgz dokuwiki':
-        path => '/usr/src/dokuwiki.tgz',
         ensure => present,
+        path   => '/usr/src/dokuwiki.tgz',
         source => 'https://download.dokuwiki.org/src/dokuwiki/dokuwiki-stable.tgz'
 }
 exec {
     'extract dokuwiki':
         command => 'tar xavf dokuwiki.tgz',
-        cwd => '/usr/src',
-        path => ['/usr/bin'],
+        cwd     => '/usr/src',
+        path    => ['/usr/bin'],
         require => File['download tgz dokuwiki']
 }
 file {
     'rename dokuwiki':
-        path => '/usr/src/dokuwiki',
-        ensure => present,
-        source => '/usr/src/dokuwiki-2020-07-29',
+        ensure  => present,
+        path    => '/usr/src/dokuwiki',
+        source  => '/usr/src/dokuwiki-2020-07-29',
         require => Exec['extract dokuwiki']
 }
 file {
     'delete extracted dokuwiki':
-        path => '/usr/src/dokuwiki-2020-07-29',
-        ensure => absent,
+        ensure  => absent,
+        path    => '/usr/src/dokuwiki-2020-07-29',
         require => File['rename dokuwiki']
 }
 file {
