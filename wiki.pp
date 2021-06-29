@@ -33,6 +33,9 @@ file {
         path    => '/usr/src/dokuwiki-2020-07-29',
         require => File['rename dokuwiki']
 }
+}
+
+class recettes_wiki {
 file {
     'create recettes.wiki directory':
         ensure  => directory,
@@ -43,6 +46,9 @@ file {
         group   => 'www-data',
         require => File['rename dokuwiki']
 }
+}
+
+class politique_wiki {
 file {
     'create politique.wiki directory':
         ensure  => directory,
@@ -54,6 +60,13 @@ file {
         require => File['rename dokuwiki']
 }
 }
+
 node server0 {
     include docwiki
+    include recettes_wiki
+}
+
+node server1 {
+    include docwiki
+    include politique_wiki
 }
