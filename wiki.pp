@@ -61,12 +61,12 @@ class politique_wiki {
     }
 }
 
-node server0 {
+node 'server0' {
     include docwiki
     include recettes_wiki
 }
 
-node server1 {
+node 'server1' {
     include docwiki
     include politique_wiki
 }
