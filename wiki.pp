@@ -1,3 +1,4 @@
+class docwiki {
 package {
     'apache2':
         ensure => present
@@ -51,4 +52,8 @@ file {
         owner   => 'www-data',
         group   => 'www-data',
         require => File['rename dokuwiki']
+}
+}
+node server0 {
+    include docwiki
 }
