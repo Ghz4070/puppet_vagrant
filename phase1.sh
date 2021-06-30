@@ -132,4 +132,6 @@ cadir  = /var/lib/puppet/ssl/ca
 dns_alt_names = puppet   
 ## END PROVISION
 	MARK
+
+    puppet agent --test
 fi
