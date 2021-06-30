@@ -1,4 +1,4 @@
-class docwiki {
+class dokuwiki {
     package {
         'apache2':
             ensure => present
@@ -35,24 +35,11 @@ class docwiki {
     }
 }
 
-class recettes_wiki {
+define deploy_wiki($site) {
     file {
-        'create recettes.wiki directory':
+        "create ${site} directory":
             ensure  => directory,
-            path    => '/var/www/recettes.wiki',
-            source  => '/usr/src/dokuwiki',
-            recurse => true,
-            owner   => 'www-data',
-            group   => 'www-data',
-            require => File['rename dokuwiki']
-    }
-}
-
-class politique_wiki {
-    file {
-        'create politique.wiki directory':
-            ensure  => directory,
-            path    => '/var/www/politique.wiki',
+            path    => "/var/www/${site}",
             source  => '/usr/src/dokuwiki',
             recurse => true,
             owner   => 'www-data',
@@ -62,11 +49,19 @@ class politique_wiki {
 }
 
 node 'server0' {
-    include docwiki
-    include recettes_wiki
+    include dokuwiki
+    deploy_wiki { 
+        "recettes":
+            site => "recettes.wiki";
+        "couscous.com":
+            site => "couscous.com";
+  }
 }
 
 node 'server1' {
-    include docwiki
-    include politique_wiki
+    include dokuwiki
+    deploy_wiki { 
+        "politique":
+            site => "politique.wiki",
+  }
 }
