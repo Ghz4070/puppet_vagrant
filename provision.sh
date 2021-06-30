@@ -111,27 +111,7 @@ if [ "$HOSTNAME" = "control" ]; then
 else
     # J'installe puppet dessus
     apt-get install -y \
-        puppet \
-        puppet-agent
-
-    systemctl restart puppet-agent
-
-    sed -i \
-        -e '/## BEGIN PROVISION/,/## END PROVISION/d' \
-        /etc/puppet/puppet.conf
-    cat >>/etc/puppet/puppet.conf <<-MARK
-## BEGIN PROVISION
-[main] 
-ssldir = /var/lib/puppet/ssl
-certname = $HOSTNAME
-server = control
-environment = production 
-[master]
-vardir = /var/lib/puppet
-cadir  = /var/lib/puppet/ssl/ca
-dns_alt_names = puppet   
-## END PROVISION
-	MARK
+        puppet
 fi
 
 # J'utilise /etc/hosts pour associer les IP aux noms de domaines

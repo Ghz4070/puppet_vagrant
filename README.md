@@ -2,6 +2,8 @@
 
 https://gist.github.com/glenux/e847d7a528b4e03ccdc9ce8591e00674
 
+https://gist.github.com/glenux/d6a705da26f0231b6b6f4f89f3e8b0bf
+
 ## Etat des lieux
 
 ### Sur le node 'control';
